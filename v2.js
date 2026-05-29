@@ -118,12 +118,24 @@ function setupGsapRide() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from(".ride-brand, .ride-header nav a", {
-    y: -22,
+  gsap.from(".journey-start img, .journey-start .eyebrow, .journey-start h1, .scroll-cue", {
+    y: 36,
     opacity: 0,
-    duration: .8,
+    duration: 1,
     ease: "power3.out",
-    stagger: .08
+    stagger: .1
+  });
+
+  gsap.to(".journey-start > div", {
+    scrollTrigger: {
+      trigger: ".journey-start",
+      start: "top top",
+      end: "bottom top",
+      scrub: 1
+    },
+    y: -120,
+    opacity: 0,
+    scale: .9
   });
 
   const heroTl = gsap.timeline({

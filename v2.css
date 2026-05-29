@@ -325,7 +325,7 @@ p {
 
 .food-story {
   position: relative;
-  min-height: 380vh;
+  min-height: 520vh;
   background:
     radial-gradient(circle at 50% 40%, rgba(255, 194, 71, .18), transparent 25rem),
     linear-gradient(180deg, #060606, #130b08 46%, #060606);
@@ -348,6 +348,38 @@ p {
     repeating-linear-gradient(135deg, rgba(255, 244, 218, .04) 0 1px, transparent 1px 2.2rem);
 }
 
+.story-sky,
+.story-sky span,
+.shawn-signal,
+.signal-ring,
+.review-frames,
+.review-frame,
+.kinetic-words,
+.kinetic-words span {
+  position: absolute;
+}
+
+.story-sky {
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.story-sky span {
+  width: 42rem;
+  height: .12rem;
+  left: var(--x);
+  top: var(--y);
+  background: linear-gradient(90deg, transparent, rgba(255, 244, 218, .42), transparent);
+  transform: rotate(var(--r));
+  opacity: .45;
+}
+
+.story-sky span:nth-child(1) { --x: -8rem; --y: 22%; --r: -18deg; }
+.story-sky span:nth-child(2) { --x: 42%; --y: 18%; --r: 21deg; }
+.story-sky span:nth-child(3) { --x: 8%; --y: 70%; --r: 13deg; }
+.story-sky span:nth-child(4) { --x: 58%; --y: 78%; --r: -24deg; }
+
 .story-copy {
   position: absolute;
   z-index: 3;
@@ -368,6 +400,147 @@ p {
   z-index: 2;
   inset: 0;
 }
+
+.shawn-signal {
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  width: clamp(13rem, 24vw, 23rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.shawn-signal img {
+  width: 62%;
+  height: 62%;
+  border: .35rem solid var(--gold);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 5rem rgba(255, 64, 47, .32);
+}
+
+.shawn-signal strong {
+  position: absolute;
+  right: -1.6rem;
+  bottom: 2.2rem;
+  padding: .55rem .7rem;
+  border: 1px solid rgba(255, 244, 218, .34);
+  border-radius: .55rem;
+  background: rgba(6, 6, 6, .72);
+  color: var(--cream);
+  font-size: clamp(.8rem, 1.4vw, 1.05rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.signal-ring {
+  inset: 0;
+  border: 1px solid rgba(255, 194, 71, .42);
+  border-radius: 50%;
+  animation: signalPulse 2.8s ease-in-out infinite alternate;
+}
+
+.ring-two {
+  inset: -2.4rem;
+  border-color: rgba(93, 255, 194, .32);
+  animation-delay: .22s;
+}
+
+.ring-three {
+  inset: -4.6rem;
+  border-color: rgba(255, 95, 168, .28);
+  animation-delay: .44s;
+}
+
+@keyframes signalPulse {
+  to {
+    transform: rotate(18deg) scale(1.05);
+    opacity: .42;
+  }
+}
+
+.review-frames {
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.review-frame {
+  width: clamp(9rem, 17vw, 16rem);
+  aspect-ratio: 9 / 16;
+  border: 1px solid rgba(255, 244, 218, .22);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 244, 218, .16), rgba(255, 244, 218, .02)),
+    rgba(0, 0, 0, .42);
+  box-shadow: 0 1.4rem 4rem rgba(0, 0, 0, .38);
+  backdrop-filter: blur(12px);
+}
+
+.review-frame::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: .75rem;
+  width: 28%;
+  height: .26rem;
+  border-radius: 999px;
+  background: rgba(255, 244, 218, .26);
+  transform: translateX(-50%);
+}
+
+.review-frame span {
+  position: absolute;
+  left: .85rem;
+  right: .85rem;
+  bottom: .85rem;
+  color: var(--gold);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.frame-one {
+  left: 7%;
+  top: 12%;
+  transform: rotate(-12deg);
+}
+
+.frame-two {
+  right: 11%;
+  top: 18%;
+  transform: rotate(10deg);
+}
+
+.frame-three {
+  left: 62%;
+  bottom: 8%;
+  transform: rotate(-6deg);
+}
+
+.kinetic-words {
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+}
+
+.kinetic-words span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 244, 218, .58);
+  font-family: "Archivo Black", Inter, sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: .8;
+  text-transform: uppercase;
+  opacity: .22;
+}
+
+.kinetic-words span:nth-child(1) { left: 4%; top: 20%; }
+.kinetic-words span:nth-child(2) { right: 6%; top: 34%; }
+.kinetic-words span:nth-child(3) { left: 18%; bottom: 15%; }
+.kinetic-words span:nth-child(4) { right: 13%; bottom: 20%; }
+.kinetic-words span:nth-child(5) { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
 .food-icon {
   position: absolute;
@@ -745,6 +918,19 @@ p {
     position: relative;
     min-height: 42rem;
     margin-top: 2rem;
+  }
+
+  .shawn-signal {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 1rem auto;
+    transform: none;
+  }
+
+  .review-frames,
+  .kinetic-words {
+    display: none;
   }
 
   .horizontal-ride {

@@ -24,6 +24,10 @@ function setupFallbackMotion() {
   const foodStory = document.querySelector(".food-story");
   const foodIcons = Array.from(document.querySelectorAll(".food-icon"));
   const storyCopies = Array.from(document.querySelectorAll(".story-copy"));
+  const signal = document.querySelector(".shawn-signal");
+  const frames = Array.from(document.querySelectorAll(".review-frame"));
+  const words = Array.from(document.querySelectorAll(".kinetic-words span"));
+  const skyLines = Array.from(document.querySelectorAll(".story-sky span"));
 
   window.addEventListener("scroll", () => {
     const rect = hero?.getBoundingClientRect();
@@ -40,6 +44,17 @@ function setupFallbackMotion() {
 
     const storyRect = foodStory?.getBoundingClientRect();
     if (!storyRect || !foodIcons.length) return;
+    if (window.innerWidth <= 900) {
+      storyCopies.forEach((item) => {
+        item.style.opacity = "1";
+        item.style.transform = "none";
+      });
+      if (signal) {
+        signal.style.opacity = "1";
+        signal.style.transform = "none";
+      }
+      return;
+    }
     const storyProgress = Math.max(0, Math.min(1, -storyRect.top / (storyRect.height - window.innerHeight)));
     const centerPull = Math.sin(storyProgress * Math.PI);
     const burst = Math.max(0, (storyProgress - .66) / .34);
@@ -53,19 +68,44 @@ function setupFallbackMotion() {
 
     foodIcons.forEach((icon, index) => {
       const [x, y, rotate] = iconMoves[index];
-      const form = Math.max(0, Math.min(1, storyProgress * 2.2 - index * .12));
-      const gatherX = x * (1 - centerPull) + (index - 2) * 42 * centerPull;
-      const gatherY = y * (1 - centerPull) + Math.sin(index) * 22 * centerPull + burst * (index % 2 ? -120 : 120);
-      const spin = rotate + storyProgress * (index % 2 ? -75 : 75);
+      const form = Math.max(0, Math.min(1, storyProgress * 2.8 - index * .16));
+      const gatherX = x * (1 - centerPull) + (index - 2) * 34 * centerPull;
+      const gatherY = y * (1 - centerPull) + Math.sin(index) * 18 * centerPull + burst * (index % 2 ? -190 : 190);
+      const spin = rotate + storyProgress * (index % 2 ? -140 : 140);
       icon.style.opacity = String(.18 + form * .82);
-      icon.style.transform = `translate(${gatherX}px, ${gatherY}px) rotate(${spin}deg) scale(${.55 + form * .45 + centerPull * .18})`;
+      icon.style.transform = `translate(${gatherX}px, ${gatherY}px) rotate(${spin}deg) scale(${.5 + form * .5 + centerPull * .28})`;
     });
 
     storyCopies.forEach((item, index) => {
-      const start = index * .28;
-      const active = 1 - Math.min(1, Math.abs(storyProgress - start - .12) / .18);
+      const centers = [.12, .43, .75];
+      const active = 1 - Math.min(1, Math.abs(storyProgress - centers[index]) / .28);
       item.style.opacity = String(Math.max(0, active));
       item.style.transform = `translateY(${(1 - Math.max(0, active)) * 32}px)`;
+    });
+
+    if (signal) {
+      const signalScale = .68 + centerPull * .58 + burst * .35;
+      signal.style.opacity = String(Math.min(1, storyProgress * 3));
+      signal.style.transform = `translate(-50%, -50%) scale(${signalScale}) rotate(${storyProgress * 24}deg)`;
+    }
+
+    frames.forEach((frame, index) => {
+      const side = index % 2 ? 1 : -1;
+      const frameProgress = Math.max(0, Math.min(1, storyProgress * 2.2 - index * .24));
+      frame.style.opacity = String(frameProgress * (1 - burst * .7));
+      frame.style.transform = `translate(${side * (1 - frameProgress) * 180}px, ${(1 - frameProgress) * 120}px) rotate(${side * (14 - storyProgress * 30)}deg) scale(${.88 + frameProgress * .18})`;
+    });
+
+    words.forEach((word, index) => {
+      const wordProgress = Math.max(0, Math.min(1, storyProgress * 2.5 - index * .13));
+      const drift = (index - 2) * storyProgress * 95;
+      word.style.opacity = String(.08 + wordProgress * .32 - burst * .18);
+      word.style.transform = `translate(${drift}px, ${Math.sin(storyProgress * 4 + index) * 34}px) rotate(${(index - 2) * 7 + storyProgress * 24}deg)`;
+    });
+
+    skyLines.forEach((line, index) => {
+      line.style.transform = `translateX(${storyProgress * (index % 2 ? -180 : 180)}px) rotate(${index % 2 ? 21 : -18}deg)`;
+      line.style.opacity = String(.18 + centerPull * .48);
     });
   }, { passive: true });
 }

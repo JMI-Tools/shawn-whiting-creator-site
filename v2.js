@@ -1,5 +1,6 @@
 const aura = document.querySelector(".cursor-aura");
 const progress = document.querySelector(".progress");
+const scrollPercent = document.querySelector("[data-scroll-percent]");
 window.__v2RideLoaded = true;
 
 window.addEventListener("pointermove", (event) => {
@@ -11,6 +12,9 @@ function updateProgress() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const value = max > 0 ? window.scrollY / max : 0;
   progress?.style.setProperty("transform", `scaleX(${Math.max(0, Math.min(1, value))})`);
+  if (scrollPercent) {
+    scrollPercent.textContent = `${Math.round(Math.max(0, Math.min(1, value)) * 100)}%`;
+  }
 }
 
 updateProgress();

@@ -86,6 +86,37 @@ a {
   mix-blend-mode: screen;
 }
 
+.experience-hud {
+  position: fixed;
+  z-index: 35;
+  left: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: 1rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  pointer-events: none;
+}
+
+.experience-hud span {
+  color: var(--cream);
+  font-family: "Archivo Black", Inter, sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2.8rem);
+  line-height: .9;
+}
+
+.experience-hud p {
+  max-width: 14rem;
+  margin: 0;
+  color: rgba(255, 244, 218, .62);
+  font-size: .78rem;
+  font-weight: 900;
+  line-height: 1.25;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .journey-start {
   min-height: 100svh;
   display: grid;
@@ -763,6 +794,120 @@ p {
   background-image: linear-gradient(0deg, rgba(0, 0, 0, .82), rgba(0, 0, 0, .08)), url("https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1200&q=90");
 }
 
+.bite-studies {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 5vw, 5rem);
+  background: #050505;
+}
+
+.bite-studies::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 194, 71, .16), transparent 24rem),
+    radial-gradient(circle at 80% 65%, rgba(93, 255, 194, .10), transparent 25rem);
+  pointer-events: none;
+}
+
+.studies-intro,
+.study-grid,
+.studio-strip {
+  position: relative;
+}
+
+.studies-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.studies-intro h2 {
+  max-width: 12ch;
+  margin-bottom: 0;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.study-card {
+  min-height: 32rem;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: .25rem;
+  background: rgba(255, 255, 255, .04);
+}
+
+.study-card:nth-child(2) {
+  margin-top: 5rem;
+}
+
+.study-card:nth-child(3) {
+  margin-top: 2rem;
+}
+
+.study-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  object-fit: cover;
+  filter: grayscale(.15) contrast(1.06);
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.study-card:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0) saturate(1.25) contrast(1.05);
+}
+
+.study-card div {
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.study-card span {
+  display: block;
+  margin-bottom: .55rem;
+  color: var(--gold);
+  font-size: .78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.study-card p {
+  font-size: .96rem;
+}
+
+.studio-strip {
+  display: flex;
+  width: max-content;
+  gap: .65rem;
+  margin-top: clamp(3rem, 7vw, 6rem);
+  animation: studioDrift 18s linear infinite;
+}
+
+.studio-strip span {
+  padding: .7rem .9rem;
+  border: 1px solid rgba(255, 244, 218, .24);
+  border-radius: 999px;
+  color: rgba(255, 244, 218, .75);
+  font-size: .78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@keyframes studioDrift {
+  to { transform: translateX(-25%); }
+}
+
 .impact-grid {
   display: grid;
   grid-template-columns: 1fr repeat(3, minmax(0, .72fr));
@@ -859,6 +1004,16 @@ p {
   color: var(--cream);
 }
 
+.finale small {
+  display: block;
+  margin-top: 2.2rem;
+  color: rgba(255, 244, 218, .62);
+  font-family: "Archivo Black", Inter, sans-serif;
+  font-size: clamp(1.4rem, 4vw, 3.5rem);
+  line-height: .9;
+  text-transform: uppercase;
+}
+
 @media (max-width: 900px) {
   .hero-stage {
     padding-top: 2rem;
@@ -884,8 +1039,18 @@ p {
   }
 
   .scene,
-  .impact-grid {
+  .impact-grid,
+  .study-grid {
     grid-template-columns: 1fr;
+  }
+
+  .studies-intro {
+    display: block;
+  }
+
+  .study-card:nth-child(2),
+  .study-card:nth-child(3) {
+    margin-top: 0;
   }
 
   .food-story {
@@ -957,6 +1122,10 @@ p {
   }
 
   .cursor-aura {
+    display: none;
+  }
+
+  .experience-hud {
     display: none;
   }
 

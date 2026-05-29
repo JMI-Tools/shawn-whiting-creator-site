@@ -288,6 +288,11 @@ p {
   background: rgba(255, 255, 255, .08);
 }
 
+.ghost {
+  border: 1px solid rgba(86, 240, 180, .55);
+  background: rgba(86, 240, 180, .10);
+}
+
 .creator-panel {
   display: grid;
   gap: 1rem;
@@ -354,6 +359,26 @@ p {
   border-radius: 999px;
   font-size: .85rem;
   font-weight: 900;
+}
+
+.experience-entry {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 5rem);
+  background:
+    linear-gradient(135deg, rgba(255, 61, 46, .20), rgba(86, 240, 180, .10)),
+    #080808;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-entry h2 {
+  max-width: 12ch;
+}
+
+.experience-entry p {
+  max-width: 34rem;
 }
 
 .band,
@@ -1002,6 +1027,11 @@ dd {
   }
 
   .book {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .experience-entry {
     align-items: flex-start;
     flex-direction: column;
   }

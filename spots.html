@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spots | Shawn Whiting @shawnsreview</title>
+  <meta name="description" content="Interactive Grand Rapids food spot web app for Shawn Whiting, @shawnsreview.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="spots">
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-meter" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="Shawn Whiting home">
+      <img class="brand-avatar" src="https://yt3.googleusercontent.com/-_BHoMZ8AHd11-Js7e2Nj3Zmq9wxC_gJAwMIqdMfL5kZB7zshyM_y443aaibfiiZXfBR-ZzHlg=s160-c-k-c0x00ffffff-no-rj" alt="">
+      <span>@shawnsreview</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="./index.html#watch">Watch</a>
+      <a href="./spots.html" aria-current="page">Spots</a>
+      <a href="./index.html#soundtrack">Sound</a>
+      <a href="./index.html#book">Book</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="spots-hero">
+      <div class="noise-grid" aria-hidden="true"></div>
+      <div class="spots-hero-copy">
+        <p class="kicker">Interactive food board</p>
+        <h1>All the spots</h1>
+        <p class="lede">Confirmed indexed Shawn-linked stops up top, then a Grand Rapids hit list for the next wave of reviews. Filter it, tap a card, and let the board move.</p>
+      </div>
+      <div class="radar-panel" aria-label="Flavor radar">
+        <div class="radar-orbit">
+          <span></span><span></span><span></span>
+        </div>
+        <strong>GR</strong>
+        <p>BBQ, deli, heat, tacos, bakeries, steak, sushi, coffee.</p>
+      </div>
+    </section>
+
+    <section class="app-shell" aria-label="Food spots app">
+      <aside class="control-dock">
+        <p class="kicker">Filters</p>
+        <div class="filter-group" role="group" aria-label="Filter spots">
+          <button class="filter-button is-active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="confirmed">Confirmed</button>
+          <button class="filter-button" type="button" data-filter="bbq">BBQ</button>
+          <button class="filter-button" type="button" data-filter="sandwich">Sandwich</button>
+          <button class="filter-button" type="button" data-filter="heat">Heat</button>
+          <button class="filter-button" type="button" data-filter="hitlist">Hit list</button>
+        </div>
+        <div class="now-card">
+          <span>Current board</span>
+          <strong data-count>12</strong>
+          <p>Tap any spot for the creator-angle note, visual mood, and what to order first.</p>
+        </div>
+      </aside>
+
+      <section class="spot-lab">
+        <div class="spot-toolbar">
+          <div>
+            <p class="kicker">Spot deck</p>
+            <h2>Grand Rapids food run</h2>
+          </div>
+          <label class="search-box">
+            <span>Search</span>
+            <input data-search type="search" placeholder="BBQ, deli, tacos...">
+          </label>
+        </div>
+        <div class="all-spots-grid" data-spots-grid></div>
+      </section>
+    </section>
+
+    <section class="map-strip">
+      <div>
+        <p class="kicker">Route energy</p>
+        <h2>From first bite to last stop.</h2>
+      </div>
+      <div class="route-line" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="spot-modal" data-spot-modal>
+    <button class="modal-close" type="button" data-close-modal aria-label="Close spot details">Close</button>
+    <div data-modal-content></div>
+  </dialog>
+
+  <footer>
+    <p>Confirmed labels mean the place appeared in public indexed social/profile results connected to @shawnsreview. Hit-list labels are design-forward Grand Rapids targets added for a fuller web app experience.</p>
+  </footer>
+  <script src="./app.js"></script>
+</body>
+</html>

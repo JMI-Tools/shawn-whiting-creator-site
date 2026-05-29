@@ -183,7 +183,7 @@ a {
 }
 
 .ride-hero {
-  min-height: 260vh;
+  min-height: 180vh;
   position: relative;
 }
 
@@ -367,7 +367,7 @@ p {
 
 .food-story {
   position: relative;
-  min-height: 520vh;
+  min-height: 240vh;
   background:
     radial-gradient(circle at 50% 40%, rgba(255, 194, 71, .18), transparent 25rem),
     linear-gradient(180deg, #060606, #130b08 46%, #060606);
@@ -421,21 +421,6 @@ p {
 .story-sky span:nth-child(2) { --x: 42%; --y: 18%; --r: 21deg; }
 .story-sky span:nth-child(3) { --x: 8%; --y: 70%; --r: 13deg; }
 .story-sky span:nth-child(4) { --x: 58%; --y: 78%; --r: -24deg; }
-
-.story-copy {
-  position: absolute;
-  z-index: 3;
-  left: clamp(1rem, 5vw, 5rem);
-  bottom: clamp(2rem, 8vh, 5rem);
-  max-width: 44rem;
-  opacity: 0;
-  transform: translateY(2rem);
-}
-
-.story-copy-one {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 .food-orbit {
   position: absolute;
@@ -706,7 +691,7 @@ p {
 }
 
 .scene {
-  min-height: 100svh;
+  min-height: 80svh;
   display: grid;
   grid-template-columns: .76fr 1fr;
   gap: clamp(1.5rem, 6vw, 5rem);
@@ -731,7 +716,7 @@ p {
 }
 
 .horizontal-ride {
-  height: 380vh;
+  height: 230vh;
   position: relative;
   overflow: hidden;
 }
@@ -797,7 +782,7 @@ p {
 .bite-studies {
   position: relative;
   overflow: hidden;
-  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 5vw, 5rem);
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 5vw, 5rem);
   background: #050505;
 }
 
@@ -811,33 +796,20 @@ p {
   pointer-events: none;
 }
 
-.studies-intro,
 .study-grid,
 .studio-strip {
   position: relative;
-}
-
-.studies-intro {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-.studies-intro h2 {
-  max-width: 12ch;
-  margin-bottom: 0;
 }
 
 .study-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  align-items: start;
 }
 
 .study-card {
-  min-height: 32rem;
+  min-height: 0;
   display: grid;
   grid-template-rows: 1fr auto;
   overflow: hidden;
@@ -847,17 +819,16 @@ p {
 }
 
 .study-card:nth-child(2) {
-  margin-top: 5rem;
+  margin-top: clamp(1rem, 4vw, 3rem);
 }
 
 .study-card:nth-child(3) {
-  margin-top: 2rem;
+  margin-top: clamp(.5rem, 2vw, 1.5rem);
 }
 
 .study-card img {
   width: 100%;
-  height: 100%;
-  min-height: 20rem;
+  height: clamp(13rem, 24vw, 22rem);
   object-fit: cover;
   filter: grayscale(.15) contrast(1.06);
   transition: transform .45s ease, filter .45s ease;
@@ -890,7 +861,7 @@ p {
   display: flex;
   width: max-content;
   gap: .65rem;
-  margin-top: clamp(3rem, 7vw, 6rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
   animation: studioDrift 18s linear infinite;
 }
 
@@ -908,41 +879,13 @@ p {
   to { transform: translateX(-25%); }
 }
 
-.impact-grid {
-  display: grid;
-  grid-template-columns: 1fr repeat(3, minmax(0, .72fr));
-  gap: 1rem;
-  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 5vw, 5rem);
-}
-
-.impact-grid > div:first-child {
-  grid-column: 1 / -1;
-}
-
-.impact-card {
-  min-height: 20rem;
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: .65rem;
-  background: rgba(255, 255, 255, .07);
-  transform: translateY(0);
-}
-
-.impact-card strong {
-  display: block;
-  color: var(--gold);
-  font-family: "Archivo Black", sans-serif;
-  font-size: clamp(3rem, 6vw, 6rem);
-  line-height: .9;
-}
-
 .finale {
   position: relative;
-  min-height: 100svh;
+  min-height: 80svh;
   display: grid;
   align-items: end;
   overflow: hidden;
-  padding: 7rem clamp(1rem, 5vw, 5rem);
+  padding: 5rem clamp(1rem, 5vw, 5rem);
   background: #111;
 }
 
@@ -1039,13 +982,8 @@ p {
   }
 
   .scene,
-  .impact-grid,
   .study-grid {
     grid-template-columns: 1fr;
-  }
-
-  .studies-intro {
-    display: block;
   }
 
   .study-card:nth-child(2),
@@ -1060,19 +998,6 @@ p {
   .food-stage {
     position: relative;
     min-height: 145svh;
-  }
-
-  .story-copy {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    margin-top: 2rem;
-    opacity: 1;
-    transform: none;
-  }
-
-  .story-copy + .story-copy {
-    margin-top: 1.25rem;
   }
 
   .food-orbit {

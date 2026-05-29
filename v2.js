@@ -27,7 +27,6 @@ function setupFallbackMotion() {
   const copy = document.querySelector(".hero-copy");
   const foodStory = document.querySelector(".food-story");
   const foodIcons = Array.from(document.querySelectorAll(".food-icon"));
-  const storyCopies = Array.from(document.querySelectorAll(".story-copy"));
   const signal = document.querySelector(".shawn-signal");
   const frames = Array.from(document.querySelectorAll(".review-frame"));
   const words = Array.from(document.querySelectorAll(".kinetic-words span"));
@@ -49,10 +48,6 @@ function setupFallbackMotion() {
     const storyRect = foodStory?.getBoundingClientRect();
     if (!storyRect || !foodIcons.length) return;
     if (window.innerWidth <= 900) {
-      storyCopies.forEach((item) => {
-        item.style.opacity = "1";
-        item.style.transform = "none";
-      });
       if (signal) {
         signal.style.opacity = "1";
         signal.style.transform = "none";
@@ -78,13 +73,6 @@ function setupFallbackMotion() {
       const spin = rotate + storyProgress * (index % 2 ? -140 : 140);
       icon.style.opacity = String(.18 + form * .82);
       icon.style.transform = `translate(${gatherX}px, ${gatherY}px) rotate(${spin}deg) scale(${.5 + form * .5 + centerPull * .28})`;
-    });
-
-    storyCopies.forEach((item, index) => {
-      const centers = [.12, .43, .75];
-      const active = 1 - Math.min(1, Math.abs(storyProgress - centers[index]) / .28);
-      item.style.opacity = String(Math.max(0, active));
-      item.style.transform = `translateY(${(1 - Math.max(0, active)) * 32}px)`;
     });
 
     if (signal) {
@@ -231,18 +219,6 @@ function setupGsapRide() {
     rotate: 4,
     opacity: .35,
     stagger: .1
-  });
-
-  gsap.from(".impact-card", {
-    scrollTrigger: {
-      trigger: ".impact-grid",
-      start: "top 72%",
-      end: "center center",
-      scrub: 1
-    },
-    y: 120,
-    opacity: 0,
-    stagger: .16
   });
 
   gsap.to(".finale-bg", {
